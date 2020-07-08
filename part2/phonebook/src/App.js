@@ -3,6 +3,7 @@ import Filter from './components/Filter'
 import AddPerson from './components/AddPerson';
 import DispPersons from './components/DispPersons';
 import noteService from './services/persons'
+import Notification from './components/Notification'
 
 const App = () => {
   const [persons, setPersons ] = useState([]) 
@@ -10,6 +11,8 @@ const App = () => {
   const [newNumber, setNewNumber] = useState("")
   const [showAll, setShowAll] = useState(true)
   const [newSearch, setNewSearch] = useState("")
+  const [notif,setNotif] = useState(null)
+  const [notifcol,setNotifCol] = useState(null)
 
   const hook = () => {
     noteService.get()
@@ -27,6 +30,11 @@ const App = () => {
         }
       noteService.create(obj)
                   .then(response=>setPersons(persons.concat(response)))
+                  .then(()=>{
+                    setNotif(`Added ${newName}`)
+                    setNotifCol("rgb(27, 133, 27)")
+                    setTimeout(()=>{setNotif(null)},2000)
+                  })
       }else{
         const user=persons.find(p=>p.name===newName)
         const id=user.id
@@ -38,6 +46,16 @@ const App = () => {
         noteService.replace(id,obj)
                   .then(response=>{
                     setPersons(persons.map(p=>p.id===id?response:p))
+                  })
+                  .then(()=>{
+                    setNotif(`Updated ${newName}'s number`)
+                    setNotifCol("rgb(27, 133, 27)")
+                    setTimeout(()=>{setNotif(null)},2000)
+                  })
+                  .catch(error=>{
+                    setNotif(`${newName} no longer exists`)
+                    setNotifCol("red")
+                    setTimeout(()=>{setNotif(null)},2000)
                   })
       }}
       setNewName("")
@@ -66,7 +84,13 @@ const App = () => {
     if(window.confirm(`delete ${name}?`)){
     const user=persons.find(p=>p.name===name)
     noteService.userDelete(user.id)
-          .then(setPersons(persons.filter(p=>p!==user)))}
+          .then(setPersons(persons.filter(p=>p!==user)))
+          .then(()=>{
+            setNotif(`Deleted ${name}`)
+            setNotifCol("rgb(27, 133, 27)")
+            setTimeout(()=>{setNotif(null)},2000)
+          })
+      }
   }
 
   const personstoshow = showAll?persons:persons.filter((person)=>person.name===newSearch)
@@ -74,6 +98,7 @@ const App = () => {
   return(
     <div>
       <h2>Phonebook</h2>
+      <Notification notif={notif} col={notifcol}/>
       <Filter check={check} newSearch={newSearch} />
       <h2>add a new</h2>
       <AddPerson addName={addName} handleText={handleText} handleNumber={handleNumber} newName={newName}

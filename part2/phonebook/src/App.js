@@ -2,7 +2,7 @@ import React,{useState, useEffect} from 'react';
 import Filter from './components/Filter'
 import AddPerson from './components/AddPerson';
 import DispPersons from './components/DispPersons';
-import axios from 'axios'
+import noteService from './services/persons'
 
 const App = () => {
   const [persons, setPersons ] = useState([]) 
@@ -12,29 +12,37 @@ const App = () => {
   const [newSearch, setNewSearch] = useState("")
 
   const hook = () => {
-    axios
-    .get('http://localhost:3001/persons')
-    .then(response=>{
-      setPersons(response.data)
-    })
+    noteService.get()
+              .then(response=>setPersons(response))
   }
 
   useEffect(hook, [])
 
   const addName = (event) => {
-    event.preventDefault()
-    if(persons.filter((person)=>person.name.toLowerCase()===newName.toLowerCase()).length===0){
-      const obj = {
-        name: newName,
-        number: newNumber
-      }
-      setPersons(persons.concat(obj))
-    }else{
-      window.alert(newName+" is already added to phonebook");
+      event.preventDefault()
+      if(persons.filter((person)=>person.name.toLowerCase()===newName.toLowerCase()).length===0){
+        const obj = {
+          name: newName,
+          number: newNumber
+        }
+      noteService.create(obj)
+                  .then(response=>setPersons(persons.concat(response)))
+      }else{
+        const user=persons.find(p=>p.name===newName)
+        const id=user.id
+        if(window.confirm(`${user.name} already exists. Are you sure you want to change it?`)){
+        const obj={
+          name: newName,
+          number: newNumber
+        }
+        noteService.replace(id,obj)
+                  .then(response=>{
+                    setPersons(persons.map(p=>p.id===id?response:p))
+                  })
+      }}
+      setNewName("")
+      setNewNumber("")
     }
-    setNewName("")
-    setNewNumber("")
-  }
 
   const handleText = (event) => {
     setNewName(event.target.value)
@@ -54,6 +62,13 @@ const App = () => {
     }
   }
 
+  const deleteUser = (name) => {
+    if(window.confirm(`delete ${name}?`)){
+    const user=persons.find(p=>p.name===name)
+    noteService.userDelete(user.id)
+          .then(setPersons(persons.filter(p=>p!==user)))}
+  }
+
   const personstoshow = showAll?persons:persons.filter((person)=>person.name===newSearch)
 
   return(
@@ -64,7 +79,7 @@ const App = () => {
       <AddPerson addName={addName} handleText={handleText} handleNumber={handleNumber} newName={newName}
       newNumber={newNumber}/>
       <h2>Numbers</h2>
-      <DispPersons personstoshow={personstoshow} />
+      <DispPersons personstoshow={personstoshow} deleteUser={deleteUser} />
     </div>
   )
 };

@@ -23,7 +23,7 @@ const App = () => {
 
   const addName = (event) => {
       event.preventDefault()
-      if(persons.filter((person)=>person.name.toLowerCase()===newName.toLowerCase()).length===0){
+      if(persons.filter((person)=>person.name.toLowerCase().trim()===newName.toLowerCase().trim()).length===0){
         const obj = {
           name: newName,
           number: newNumber
@@ -42,7 +42,7 @@ const App = () => {
                     setTimeout(()=>{setNotif(null)},2000)
                   })
       }else{
-        const user=persons.find(p=>p.name===newName)
+        const user=persons.find(p=>p.name.toLowerCase().trim()===newName.toLowerCase().trim())
         const id=user.id
         if(window.confirm(`${user.name} already exists. Are you sure you want to change it?`)){
         const obj={

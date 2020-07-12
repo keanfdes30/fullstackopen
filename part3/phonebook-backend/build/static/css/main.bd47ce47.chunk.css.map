@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.css"],"names":[],"mappings":"AAAA,KACC,qBAAsB,CACtB,UACD,CACA,GACE,WAAW,CACX,iBACF,CACA,MACG,eAAe,CACf,cACF","file":"main.bd47ce47.chunk.css","sourcesContent":["body{\n\tbackground-color: grey;\n\tcolor:black;\n}\nh1{\n  color:green;\n  font-style: italic;\n}\n.note{\n   padding-top:3px;\n   font-size:15px;\n }\n\n"]}

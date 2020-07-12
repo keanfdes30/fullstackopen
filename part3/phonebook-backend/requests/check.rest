@@ -1,0 +1,11 @@
+DELETE  https://warm-sands-24632.herokuapp.com/api/persons/5f0ae6a21f0afa3f18b49c3f
+###
+POST https://warm-sands-24632.herokuapp.com/api/persons
+Content-Type: application/json
+
+{
+    "name":"Kean asg",
+    "number": "3252236235"
+}
+###
+GET https://warm-sands-24632.herokuapp.com/api/persons

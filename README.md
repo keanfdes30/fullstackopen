@@ -1,1 +1,1 @@
-helsinki mooc assingments 
+helsinki mooc assignments 

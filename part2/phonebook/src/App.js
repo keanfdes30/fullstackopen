@@ -35,6 +35,12 @@ const App = () => {
                     setNotifCol("rgb(27, 133, 27)")
                     setTimeout(()=>{setNotif(null)},2000)
                   })
+                  .catch(error=>{
+                    console.log(error.response.data)
+                    setNotif(`${JSON.stringify(error.response.data)}`)
+                    setNotifCol("red")
+                    setTimeout(()=>{setNotif(null)},2000)
+                  })
       }else{
         const user=persons.find(p=>p.name===newName)
         const id=user.id
@@ -53,7 +59,7 @@ const App = () => {
                     setTimeout(()=>{setNotif(null)},2000)
                   })
                   .catch(error=>{
-                    setNotif(`${newName} no longer exists`)
+                    setNotif(`${JSON.stringify(error.response.data)}`)
                     setNotifCol("red")
                     setTimeout(()=>{setNotif(null)},2000)
                   })

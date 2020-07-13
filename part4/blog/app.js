@@ -7,8 +7,8 @@ const config=require('./utils/config')
 const middleware = require('./utils/middleware')
 
 mongoose.connect(config.MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-        .then(()=>console.log("connected to MongoDB"))
-        .catch(error=>console.log(error.message))
+  .then(()=>console.log('connected to MongoDB'))
+  .catch(error=>console.log(error.message))
 
 app.use(cors())
 app.use(express.json())

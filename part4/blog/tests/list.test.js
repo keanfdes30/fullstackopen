@@ -1,4 +1,5 @@
 const list_helper = require('../utils/list_helper')
+
 describe('blog stats', () =>{
   test('dummy returns 1', () => {
     const blogs = []

@@ -1,4 +1,5 @@
-const Blog= require('../models/Blog')
+const Blog= require('../models/blog')
+const User = require('../models/user')
 
 const initialBlogs = [
   {
@@ -25,8 +26,14 @@ const blogstoShow = async () =>{
   const blogs=await Blog.find({})
   return blogs.map(n=>n.toJSON())
 }
+const usersinDb = async() =>{
+  const users = await User.find({})
+  return users.map(n=>n.toJSON())
+}
+
 
 module.exports={
   initialBlogs,
-  blogstoShow
+  blogstoShow,
+  usersinDb
 }

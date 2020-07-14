@@ -108,7 +108,7 @@ test('checking if updating likes works', async() =>{
     title:'third',
     author:'ripvanwinkle',
     url:'test',
-    likes:4
+    likes:toupdate.likes+1
   })
 })
 //closing database connection

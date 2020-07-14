@@ -2,12 +2,22 @@ POST http://localhost:3003/api/blogs
 Content-Type: application/json
 
 {
-    "title": "second",
-    "author": "kena",
-    "url": "test",
-    "likes": 4
+    "title":"test1",
+    "author":"kean",
+    "url":"test",
+    "likes":3,
+    "userId":"5f0d7bf217ca102868bd38af"
 }
 ###
-DELETE http://localhost:3003/api/blogs/5f0b52e3db4de81270ccca62
+POST http://localhost:3003/api/users
+Content-Type: application/json
+
+{
+    "username":"aasdfsdf",
+    "name":"dasher",
+    "password":"r"
+}
+###
+DELETE http://localhost:3003/api/blogs/5f0d76f7b3a35b13147d0a7f
 ###
 PUT http://localhost:3003/api/blogs/5f0c893c95e9021670363977

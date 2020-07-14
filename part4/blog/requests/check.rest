@@ -1,23 +1,25 @@
+GET http://localhost:3003/api/blogs
+###
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1sdXVrYWkiLCJpZCI6IjVmMGQ3YmYyMTdjYTEwMjg2OGJkMzhhZiIsImlhdCI6MTU5NDczNTE4OX0.6iqOO1jsgY4YZ0Eq8AeO7UuoHNN2lpyVtmkA3laQeeM
 
 {
-    "title":"test1",
+    "title":"test4",
     "author":"kean",
     "url":"test",
-    "likes":3,
     "userId":"5f0d7bf217ca102868bd38af"
 }
 ###
-POST http://localhost:3003/api/users
+POST http://localhost:3003/api/login
 Content-Type: application/json
 
 {
-    "username":"aasdfsdf",
-    "name":"dasher",
-    "password":"r"
+    "username":"mluukai",
+    "password":"prancer"
 }
 ###
-DELETE http://localhost:3003/api/blogs/5f0d76f7b3a35b13147d0a7f
+DELETE http://localhost:3003/api/blogs/5f0dbdb3d7f4202d84565746
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1sdXVrYWkiLCJpZCI6IjVmMGQ3YmYyMTdjYTEwMjg2OGJkMzhhZiIsImlhdCI6MTU5NDczNTE4OX0.6iqOO1jsgY4YZ0Eq8AeO7UuoHNN2lpyVtmkA3laQeeM   
 ###
 PUT http://localhost:3003/api/blogs/5f0c893c95e9021670363977

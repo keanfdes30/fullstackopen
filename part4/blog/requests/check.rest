@@ -2,13 +2,12 @@ GET http://localhost:3003/api/blogs
 ###
 POST http://localhost:3003/api/blogs
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1sdXVrYWkiLCJpZCI6IjVmMGQ3YmYyMTdjYTEwMjg2OGJkMzhhZiIsImlhdCI6MTU5NDczNTE4OX0.6iqOO1jsgY4YZ0Eq8AeO7UuoHNN2lpyVtmkA3laQeeM
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1sdXVrYWkiLCJpZCI6IjVmMGUyODQyOTQ1YzcwMjcwODg2MGMxNSIsImlhdCI6MTU5NDgwODg2MCwiZXhwIjoxNTk0ODEyNDYwfQ.4ts7M352V6k9ZAAX-FL03koEWlnOzJpUCjTaQk7CUT0
 
 {
-    "title":"test4",
-    "author":"kean",
+    "title":"test2",
+    "author":"kena",
     "url":"test",
-    "userId":"5f0d7bf217ca102868bd38af"
 }
 ###
 POST http://localhost:3003/api/login
@@ -19,7 +18,7 @@ Content-Type: application/json
     "password":"prancer"
 }
 ###
-DELETE http://localhost:3003/api/blogs/5f0dbdb3d7f4202d84565746
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1sdXVrYWkiLCJpZCI6IjVmMGQ3YmYyMTdjYTEwMjg2OGJkMzhhZiIsImlhdCI6MTU5NDczNTE4OX0.6iqOO1jsgY4YZ0Eq8AeO7UuoHNN2lpyVtmkA3laQeeM   
+DELETE http://localhost:3003/api/blogs/5f0ed6aa7c57640530e69eec
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImtlYW4iLCJpZCI6IjVmMGUyODIzOTQ1YzcwMjcwODg2MGMxNCIsImlhdCI6MTU5NDgwNzUxOX0.8k81PJqANLbUiv2LrEsGZMsp9pMBS1dlV2TXlJWSgNk
 ###
 PUT http://localhost:3003/api/blogs/5f0c893c95e9021670363977

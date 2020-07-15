@@ -15,15 +15,15 @@ const requestLogger = morgan((tokens,req,res)=>{
   return string.join(' ')
 })
 
-const tokenHandler = (request,response,next) =>{
-  const authorization = request.get('authorization')
-  if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
-    request.token = authorization.substring(7)
-  }else{
-    return null
-  }
-  next()
-}
+// const tokenHandler = (request,response,next) =>{
+//   const authorization = request.get('authorization')
+//   if (authorization && authorization.toLowerCase().startsWith('bearer ')) {
+//     request.token = authorization.substring(7)
+//   }else{
+//     return null
+//   }
+//   next()
+// }
 
 const errorHandler = (error, request, response, next) => {
   console.log(error.message)
@@ -36,9 +36,11 @@ const errorHandler = (error, request, response, next) => {
     return response.status(400).json({error:'invalid token'})
   }else if (error.name === 'TypeError'){
     return response.status(500).json({error:'the id doesnt exist'})
+  }else if (error.name == 'TokenExpiredError'){
+    return response.status(400).json({error:'token has expired'})
   }
 
   next(error)
 }
  
-module.exports = {requestLogger,errorHandler,tokenHandler}
+module.exports = {requestLogger,errorHandler}

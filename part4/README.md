@@ -1,1 +1,1 @@
-application link:fringuante-baguette-20036.herokuapp.com
+Application Link: https://fringuante-baguette-20036.herokuapp.com/

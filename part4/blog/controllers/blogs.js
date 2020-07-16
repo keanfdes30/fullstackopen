@@ -48,7 +48,6 @@ blogsRouter.post('/',async (request,response,next)=>{
 blogsRouter.delete('/:id',async (request,response,next)=>{
   try{
     const token = getTokenFrom(request)
-    console.log(token)
     const decodedToken = jwt.verify(token, process.env.SECRET)
     if (!token || !decodedToken.id) {
       return response.status(401).json({ error: 'token missing or invalid' })
@@ -58,6 +57,7 @@ blogsRouter.delete('/:id',async (request,response,next)=>{
       await Blog.findByIdAndRemove(request.params.id)
       response.status(204).end()
     }else{
+      console.log('blog doesnt belong to user')
       return response.status(400).json({error:'blog doesnt belong to user'})
     }
   }catch(error){

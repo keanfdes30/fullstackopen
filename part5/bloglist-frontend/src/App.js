@@ -4,6 +4,7 @@ import loginService from './services/login'
 import Notification from './components/Notification'
 import LoginForm from './components/LoginForm'
 import BlogDisplay from './components/BlogDisplay'
+import './App.css'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
@@ -141,7 +142,7 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div className="container">
       <Notification notif={notif} col={col} />
       {user===null && loginForm()}
       {user!==null && blogDisp()}

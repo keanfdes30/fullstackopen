@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import {Button} from 'react-bootstrap'
 
 const Togglable = (props) => {
   const [newVisible,setNewVisible] = useState(false)
@@ -12,7 +13,7 @@ const Togglable = (props) => {
         </div>
         <div style={display}>
           {props.children}
-          <button onClick={()=>setNewVisible(false)}>cancel</button>
+          <Button onClick={()=>setNewVisible(false)}>cancel</Button>
       </div>
     </div>
   );
